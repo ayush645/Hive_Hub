@@ -1,0 +1,12 @@
+{
+    "port": 9992,
+    "jwtOption": {
+        "jwtSecretKey": "ededwedwwpolfePtbEadRzVlewewf2323ferferf2323",
+        "jwtRefreshSecretKey": "ededwedwwpolfePtbEadRzVlewewf2323ferferf2323",
+        "issuer": "hivehub",
+        "subject": "hivehub",
+        "audience": "hivehub",
+        "algorithm": "SHA256",
+        "expiresIn": "3d"
+    }
+}
