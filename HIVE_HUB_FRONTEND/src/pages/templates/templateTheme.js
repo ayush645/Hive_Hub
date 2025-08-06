@@ -1,21 +1,27 @@
 import { alpha, createTheme } from "@mui/material";
 
-const templateTheme = (theme) => {
+const templateTheme = (theme = {}) => {
+  const {
+    primaryColor = "#801B7C",
+    secondaryColor = "#ff4081",
+    textColor = "#000000",
+  } = theme;
+
   return createTheme({
     palette: {
       primary: {
-        main: theme.primaryColor || "#801B7C",
-        dark: alpha(theme.primaryColor, 0.9) || alpha("#801B7C", 0.8),
-        light: alpha(theme.primaryColor, 0.8) || alpha("#801B7C", 0.6),
+        main: primaryColor,
+        dark: alpha(primaryColor, 0.9),
+        light: alpha(primaryColor, 0.8),
       },
       secondary: {
-        main: theme.secondaryColor,
+        main: secondaryColor,
       },
       background: {
         default: "#f4f6f8",
       },
       text: {
-        primary: theme.textColor,
+        primary: textColor,
       },
       grey: {
         50: "#f9f9f9",

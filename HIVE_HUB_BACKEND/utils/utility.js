@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken"); 
+const jwt = require("jsonwebtoken");
 var crypto = require("crypto");
 const config = require("../config/config.json");
 const bcrypt = require("bcrypt");
@@ -34,8 +34,9 @@ module.exports = {
     return jwt.verify(token, config.jwtOption.jwtSecretKey);
   },
   getJwtExpireTime: async () => {
-    return parseInt(config.jwtOption.expiresIn.replace("s", ""));
+    return 86400;
   },
+
 
   hashed_password: async (password) => {
     try {
