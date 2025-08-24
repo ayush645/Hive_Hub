@@ -44,7 +44,7 @@ import {
   Preview,
 } from "@mui/icons-material";
 import storeService from "../services/storeService";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -979,11 +979,33 @@ const AddProductStepperModal = ({
           color: "primary.main",
         }}
       >
-        <div className="flex">
-          <p>Add New Product</p>
+   <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        p: 2, // padding
+        bgcolor: "grey.100",
+        borderRadius: 2,
+      }}
+    >
+      <Typography variant="h6" fontWeight="bold">
+        Add New Product
+      </Typography>
 
-          <p><Link to={'/trend-product'}>trend-product</Link></p>
-        </div>
+      <Button
+        component={RouterLink}
+        to="/trend-product"
+        variant="text"
+        color="primary"
+        sx={{
+          textTransform: "none", // default MUI uppercase hatane ke liye
+        }}
+      >
+        Trend Product
+      </Button>
+    </Box>
+
         <IconButton onClick={handleClose} size="small">
           <Close />
         </IconButton>

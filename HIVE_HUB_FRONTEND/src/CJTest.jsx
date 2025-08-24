@@ -116,14 +116,20 @@ const handleAddToInventory = async (product) => {
     );
 
     // Prepare item
+    const selectedCategoryObj = thirdCategories.find(
+      (cat) => cat.categoryId === selectedThird
+    );
+    const categoryName = selectedCategoryObj?.categoryName || "";
+
+    // Prepare item
     const item = {
       title: product.productNameEn,
       description: product.remark || product.productNameEn,
       basePrice: product.sellPrice,
       attributes: product.attributes || {},
-      tags: "", // you can process product.productName or product.productNameEn if needed
-      category: selectedThird,
-      images: [mainImageFile], // send as File now
+      tags: "", 
+      category: categoryName, // use name instead of id
+      images: [mainImageFile],
       variants: [],
     };
 
@@ -158,10 +164,101 @@ const handleAddToInventory = async (product) => {
 };
 
 
+// New function for adding all products
+const handleAddAllToInventory = async () => {
+  if (products.length === 0) {
+    Swal.fire("No products", "There are no products to add!", "info");
+    return;
+  }
+
+  Swal.fire({
+    title: `Adding products...`,
+    html: `0 / ${products.length} completed`,
+    allowOutsideClick: false,
+    didOpen: () => Swal.showLoading(),
+  });
+
+  let successCount = 0;
+  let failCount = 0;
+
+  for (let i = 0; i < products.length; i++) {
+    const prod = products[i];
+
+    try {
+      // Convert URL to File
+      const urlToFile = async (url, filename, mimeType) => {
+        const res = await fetch(url);
+        const blob = await res.blob();
+        return new File([blob], filename, { type: mimeType });
+      };
+
+      const mainImageFile = await urlToFile(
+        prod.productImage,
+        "main_image.jpeg",
+        "image/jpeg"
+      );
+
+      const selectedCategoryObj = thirdCategories.find(
+        (cat) => cat.categoryId === selectedThird
+      );
+      const categoryName = selectedCategoryObj?.categoryName || "";
+
+      const item = {
+        title: prod.productNameEn,
+        description: prod.remark || prod.productNameEn,
+        basePrice: prod.sellPrice,
+        attributes: prod.attributes || {},
+        tags: "",
+        category: categoryName,
+        images: [mainImageFile],
+        variants: [],
+      };
+
+      await storeService.addItem([item]);
+      successCount++;
+    } catch (err) {
+      console.error(`Failed to add product ${prod.productNameEn}`, err);
+      failCount++;
+    }
+
+    // Update Swal progress
+    Swal.update({
+      html: `${i + 1} / ${products.length} completed`,
+    });
+  }
+
+  Swal.close();
+
+  Swal.fire({
+    icon: "success",
+    title: "Add All Complete",
+    html: `Successfully added: ${successCount} <br> Failed: ${failCount}`,
+    timer: 4000,
+    showConfirmButton: true,
+  });
+};
 
   return (
     <div style={{ padding: "20px" }}>
       <h2>Select Category to View Products</h2>
+{products.length > 0 && (
+  <div style={{ marginBottom: "20px" }}>
+    <button
+      onClick={handleAddAllToInventory}
+      style={{
+        padding: "10px 20px",
+        backgroundColor: "#ffc107",
+        color: "black",
+        border: "none",
+        borderRadius: "5px",
+        cursor: "pointer",
+        marginBottom: "10px",
+      }}
+    >
+      Add All to Inventory
+    </button>
+  </div>
+)}
 
       {/* First Category */}
       <select value={selectedFirst} onChange={handleFirstChange}>
