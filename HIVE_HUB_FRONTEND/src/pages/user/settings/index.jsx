@@ -73,11 +73,11 @@ const ProfileSettings = () => {
     navigate("/subscription/plans");
   };
 
-  const logout = () => {
-    Cookies.remove("access_token");
-    dispatch(clearUserData());
-    navigate("/auth/signin");
-  };
+  // const logout = () => {
+  //   Cookies.remove("access_token");
+  //   dispatch(clearUserData());
+  //   navigate("/auth/signin");
+  // };
 
   return (
     <Box

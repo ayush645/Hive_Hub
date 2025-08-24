@@ -44,6 +44,7 @@ import {
   Preview,
 } from "@mui/icons-material";
 import storeService from "../services/storeService";
+import { Link } from "react-router-dom";
 
 const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -978,7 +979,11 @@ const AddProductStepperModal = ({
           color: "primary.main",
         }}
       >
-        Add New Product
+        <div className="flex">
+          <p>Add New Product</p>
+
+          <p><Link to={'/trend-product'}>trend-product</Link></p>
+        </div>
         <IconButton onClick={handleClose} size="small">
           <Close />
         </IconButton>

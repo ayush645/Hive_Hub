@@ -13,12 +13,12 @@ const ServerError = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const logout = () => {
-    localStorage.clear();
-    Cookies.remove("access_token");
-    dispatch(clearUserData());
-    navigate("/auth/signin");
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   Cookies.remove("access_token");
+  //   dispatch(clearUserData());
+  //   navigate("/auth/signin");
+  // };
 
   const renderButtons = () => {
     const commonButtonProps = {

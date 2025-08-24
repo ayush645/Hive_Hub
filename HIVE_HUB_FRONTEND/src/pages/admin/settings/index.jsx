@@ -21,12 +21,12 @@ const ProfileSettings = () => {
 
   const [openLogoutDialog, setOpenLogoutDialog] = React.useState(false);
 
-  const logout = () => {
-    localStorage.clear();
-    Cookies.remove("access_token");
-    dispatch(clearUserData());
-    navigate("/auth/signin");
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   Cookies.remove("access_token");
+  //   dispatch(clearUserData());
+  //   navigate("/auth/signin");
+  // };
 
   return (
     <Box

@@ -37,6 +37,8 @@ export const authRouters = [
     isLayout: false,
     showInMenu: false,
   },
+  //test
+ 
 ];
 
 export const appRouters = [
@@ -270,6 +272,13 @@ export const appRouters = [
     path: "/subscription/plans",
     role: [STORE_OWNER],
     component: asyncComponent(() => import("../pages/subscription/plans.jsx")),
+    isLayout: true,
+    showInMenu: false,
+  },
+  {
+    path: "/trend-product",
+    role: [STORE_OWNER],
+    component: asyncComponent(() => import("../CJTest.jsx")),
     isLayout: true,
     showInMenu: false,
   },

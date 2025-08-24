@@ -9,12 +9,12 @@ const NotFoundPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const logout = () => {
-    localStorage.clear();
-    Cookies.remove("access_token");
-    dispatch(clearUserData());
-    navigate("/auth/signin");
-  };
+  // const logout = () => {
+  //   localStorage.clear();
+  //   Cookies.remove("access_token");
+  //   dispatch(clearUserData());
+  //   navigate("/auth/signin");
+  // };
 
   return (
     <Box

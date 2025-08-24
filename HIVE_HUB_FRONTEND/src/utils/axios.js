@@ -34,24 +34,24 @@ api.interceptors.response.use(
     const status = error?.response?.status || 500;
     const code = error?.code || "ERR_INTERNAL";
 
-    if ([401, 403, 500, 502].includes(status)) {
-      Cookies.remove("access_token");
-      if (status === 401) {
-        message.error("Session expired, please login again");
-        Navigate("/login");
-      } else {
-        store.dispatch(
-          setServerError({
-            isError: true,
-            code: status,
-            message:
-              error?.response?.data?.message ||
-              error?.message ||
-              "Something went wrong",
-          })
-        );
-      }
-    }
+    // if ([401, 403, 500, 502].includes(status)) {
+    //   Cookies.remove("access_token");
+    //   if (status === 401) {
+    //     message.error("Session expired, please login again");
+    //     Navigate("/login");
+    //   } else {
+    //     store.dispatch(
+    //       setServerError({
+    //         isError: true,
+    //         code: status,
+    //         message:
+    //           error?.response?.data?.message ||
+    //           error?.message ||
+    //           "Something went wrong",
+    //       })
+    //     );
+    //   }
+    // }
 
     const formattedError = {
       message:
