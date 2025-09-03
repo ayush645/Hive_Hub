@@ -17,6 +17,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import img2 from "../../../assets/storePage/image2.png";
 import img3 from "../../../assets/storePage/image3.png";
 import img4 from "../../../assets/storePage/image4.png";
+import img5 from "../../../assets/storePage/external2.png";
+import img6 from "../../../assets/storePage/external1.png";
+import img7 from "../../../assets/storePage/external3.png";
 import { useNavigate } from "react-router-dom";
 const categories = ["E-Commerce", "Education", "College", "Marketing"];
 const allCategories = [
@@ -48,6 +51,27 @@ const templates = [
     image: img3,
     isPublished: false,
     path: "/templates/education",
+  },
+  {
+    id: 5,
+    title: "Education",
+    image: img5,
+    isPublished: false,
+    path: "https://home-garden-rho.vercel.app/",
+  },
+  {
+    id: 6,
+    title: "Education",
+    image: img6,
+    isPublished: false,
+    path: "https://pet-niche.vercel.app/",
+  },
+  {
+    id: 7,
+    title: "Education",
+    image: img7,
+    isPublished: false,
+    path: "https://sports-and-fitness.vercel.app/",
   },
 ];
 
@@ -234,20 +258,25 @@ const TemplateSelector = ({ setCurrentStep, setSelectedTemplate }) => {
                   </Typography>
                   <Box>
                     <Button
-                      variant="text"
-                      sx={{
-                        py: 0,
-                        fontSize: "1rem",
-                        color: "green",
-                        textDecoration: "underline",
-                      }}
-                      onClick={() => {
-                        setCurrentStep(3);
-                        setSelectedTemplate(template);
-                      }}
-                    >
-                      Preview
-                    </Button>
+  variant="text"
+  sx={{
+    py: 0,
+    fontSize: "1rem",
+    color: "green",
+    textDecoration: "underline",
+  }}
+  onClick={() => {
+    if (template.path && template.path.startsWith("https://")) {
+      window.open(template.path, "_blank"); // naya tab me open hoga
+    } else {
+      setCurrentStep(3);
+      setSelectedTemplate(template);
+    }
+  }}
+>
+  Preview
+</Button>
+
                     {template.isPublished ? (
                       <Button
                         variant="text"
