@@ -1,9 +1,13 @@
 import { useState } from 'react';
 // import { Menu, X, ChevronDown } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
+
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
+    const navigate = useNavigate();
+
 
   const navLinks = [
     { name: 'Home', path: '/' },
@@ -47,14 +51,16 @@ const Navbar = () => {
             ))}
             
             {/* CTA Button */}
-            <div className="ml-6 pl-6 border-l border-gray-200">
-              <a
-                className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-2.5 rounded-xl font-medium text-sm shadow-lg hover:shadow-purple-200 transition-all duration-300 hover:scale-105 hover:from-purple-600 hover:to-purple-700"
-              >
-                Get Started
-              </a>
-            </div>
+           <div className="ml-6 pl-6 border-l border-gray-200">
+      <button
+        onClick={() => navigate("/auth/signin")}
+        className="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-2.5 rounded-xl font-medium text-sm shadow-lg hover:shadow-purple-200 transition-all duration-300 hover:scale-105 hover:from-purple-600 hover:to-purple-700"
+      >
+        Get Started
+      </button>
+    </div>
           </div>
+
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">

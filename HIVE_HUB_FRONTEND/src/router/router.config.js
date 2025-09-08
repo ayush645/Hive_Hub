@@ -21,10 +21,12 @@ import React from "react";
 export const authRouters = [
   {
     path: "/",
-    component: asyncComponent(() => import("../pages/homePage.jsx")),
+    component: asyncComponent(() => import("../components/Landing/Page.jsx")),
     isLayout: false,
     showInMenu: false,
   },
+
+
   {
     path: "/auth/signin",
     component: asyncComponent(() => import("../pages/auth/signin/index.jsx")),

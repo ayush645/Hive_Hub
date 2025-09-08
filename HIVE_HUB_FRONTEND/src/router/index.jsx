@@ -24,12 +24,12 @@ const Authorization = ({ children }) => {
 
   if (access_token) {
     return <Navigate to={redirectPath} state={{ from: location }} replace />;
-  } else if (window.location.pathname === "/") {
-    localStorage.clear();
-    Cookies.remove("access_token");
-    dispatch(clearUserData());
-    return <Navigate to="/auth/signin" state={{ from: location }} replace />;
-  }
+  // } else if (window.location.pathname === "/") {
+  //   localStorage.clear();
+  //   Cookies.remove("access_token");
+  //   dispatch(clearUserData());
+  //   return <Navigate to="/auth/signin" state={{ from: location }} replace />;
+   }
 
   return children;
 };
